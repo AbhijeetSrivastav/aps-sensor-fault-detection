@@ -9,8 +9,8 @@ def error_message_detail(error, error_detail: sys):
     """
     Extract error causing script, error causing line, error 
     --------------------------------------------------------
-    error: error message from SensorException class
-    error_detail: error details from SensorException class
+    error: from SensorException class
+    error_detail: from SensorException class
     ---------------------------------------------------------
     return: error_message
     """
@@ -28,7 +28,10 @@ def error_message_detail(error, error_detail: sys):
 class SensorException(Exception):
     """
     Raise SensorException 
-    ------------------------------------------------
+    --------------------------------------------------------------
+    error: from error_message_detail function
+    error_detail: from error_message_detail function
+    ---------------------------------------------------------------
     return: sensor exception error message
     """
     def __init__(self, error_message, error_detail: sys):
