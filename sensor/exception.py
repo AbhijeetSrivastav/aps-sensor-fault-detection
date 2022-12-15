@@ -1,3 +1,6 @@
+"Exceptions for sensor package"
+
+
 import os
 import sys
 
