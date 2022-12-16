@@ -38,8 +38,7 @@ class DataValidation:
 
         except Exception as e:
             raise SensorException(e, sys)
-    
-
+        
     def drop_missing_values_columns(self, df: pd.DataFrame, report_key: str)-> Optional[pd.DataFrame]:
         """
         Drops the columns from DataFrame which have null value percent more than threshold
@@ -79,7 +78,7 @@ class DataValidation:
 
         except Exception as e:
             raise SensorException(e, sys)
-            
+
 
     def data_drift(self):...
 
