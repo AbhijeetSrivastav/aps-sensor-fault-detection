@@ -18,7 +18,7 @@ class TrainingPipelineConfig:
     """
     Configuration for Training Pipeline
     ------------------------------------
-    return: None
+    return: `None`
     """
 
     def __init__(self):
@@ -33,7 +33,7 @@ class DataIngestionConfig:
     Configuration for Data Ingestion Component
     ------------------------------------------------------------
     input:
-    - training_pipeline_config: configuration of training pipeline
+    - `training_pipeline_config`: configuration of training pipeline
     ------------------------------------------------------------
     return: dictionary of everything defined in constructor
     """
@@ -68,9 +68,9 @@ class DataValidationConfig:
     Configuration for Data  Validation Component
     ---------------------------------------------------------------
     input:
-    - training_pipeline_config: configuration of training pipeline
+    - `training_pipeline_config`: configuration of training pipeline
     ---------------------------------------------------------------
-    return: None
+    return: `None`
     """
 
     def __init__(self, training_pipeline_config: TrainingPipelineConfig):
