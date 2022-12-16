@@ -29,8 +29,8 @@ class SensorException(Exception):
     """
     Raise SensorException 
     --------------------------------------------------------------
-    error: from error_message_detail function
-    error_detail: from error_message_detail function
+    `error`: from error_message_detail function
+    `error_detail`: from error_message_detail function
     ---------------------------------------------------------------
     return: sensor exception error message
     """
