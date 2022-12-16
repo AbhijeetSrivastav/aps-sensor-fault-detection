@@ -79,6 +79,40 @@ class DataValidation:
         except Exception as e:
             raise SensorException(e, sys)
 
+    def is_required_columns_exist(self,base_df: pd.DataFrame, current_df: pd.DataFrame, report_key: str)-> bool:
+        """
+        Drops the columns from DataFrame which have null value percent more than threshold
+        ------------------------------------------------------------
+        input:
+         - base_df: DataFrame from which we are validating(base info)
+         - current_df: DataFrame which we are validating
+         - report_key_: Name of the key with which to save report in `self.validation_error` attribute
+         -----------------------------------------------------------
+         return: `True` if required columns exist else `False`
+        """
+
+        try:
+            # Initializing columns of base and current data frame
+            base_columns = base_df.columns
+            current_columns = current_df.columns
+
+            # Initializing missing columns to store missing column names
+            missing_columns = []
+
+            # Checking for the columns which are in base data frame but not in current data frame
+            for base_column in base_columns:
+                if base_column not in current_columns:
+                    missing_columns.append(base_column)
+            
+            # Return True if missing columns, else Return False and add to report
+            if len(missing_columns) > 0:
+                self.validation_error[report_key] = missing_columns
+                return False
+            return True
+
+        except Exception as e:
+            raise SensorException(e, sys)
+
 
     def data_drift(self):...
 
