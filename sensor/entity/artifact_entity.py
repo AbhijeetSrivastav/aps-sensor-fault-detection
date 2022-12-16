@@ -20,7 +20,14 @@ class DataIngestionArtifact:
 
 
 @dataclass
-class DataValidationArtifact:...
+class DataValidationArtifact:
+    """
+    Artifact for Data Validation component
+    ---------------------------------------
+    return:
+    - report_file_path: path of the validation report
+    """
+    report_file_path:str
 
 
 @dataclass
