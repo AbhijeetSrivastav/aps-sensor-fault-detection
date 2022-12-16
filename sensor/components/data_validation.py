@@ -181,3 +181,85 @@ class DataValidation:
             raise SensorException(e, sys)
 
     def initiate_data_validation(self)->artifact_entity.DataValidationArtifact:
+        """
+        Initiates Data Validation Component
+        ------------------------------------------------------------
+        input: `None`
+         -----------------------------------------------------------
+        return: Data Validation Artifact
+        """
+
+        try:
+            # Reading base dataframe
+            logging.info(f"Reading base dataframe")
+            base_df = pd.read_csv(self.data_validation_config.base_file_path)
+
+            # Reading train dataframe
+            logging.info(f"Reading train dataframe")
+            train_df = pd.read_csv(self.data_ingestion_artifact.train_file_path)
+
+            # Reading test dataframe
+            logging.info(f"Reading test dataframe")
+            test_df = pd.read_csv(self.data_ingestion_artifact.test_file_path)
+
+            # Replace na values in base dataframe with Nan
+            logging.info(f"Replace na values in base dataframe with Nan")
+            base_df.replace({"na": np.NAN}, inplace=True)
+
+            # Drop missing values columns from base dataframe
+            logging.info(f"Drop missing values columns from base dataframe")
+            base_df = self.drop_missing_values_columns(df=base_df, report_key="missing_values_within_base_dataset")
+
+            # Drop missing values columns from train dataframe
+            logging.info(f"Drop missing values columns from train dataframe")
+            train_df = self.drop_missing_values_columns(df=train_df, report_key="missing_values_within_train_dataset")
+
+            # Drop missing values columns from test dataframe
+            logging.info(f"Drop missing values columns from test dataframe")
+            test_df = self.drop_missing_values_columns(df=test_df, report_key="missing_values_within_test_dataset")
+
+            # Converting input feature columns of base dataframe to float
+            excluded_columns = [TARGET_COLUMN]
+            
+            logging.info(f"Converting input feature columns of base dataframe to float")
+            base_df = utils.convert_columns_float(df=base_df, exclude_columns=excluded_columns)
+
+            # Converting input feature columns of train dataframe to float
+            logging.info(f"Converting input feature columns of train dataframe to float")
+            train_df = utils.convert_columns_float(df=train_df, exclude_columns=excluded_columns)
+
+            # Converting input feature columns of test dataframe to float
+            logging.info(f"Converting input feature columns of test dataframe to float")
+            test_df = utils.convert_columns_float(df=test_df, exclude_columns=excluded_columns)
+
+            # Checking required columns in train dataframe
+            logging.info(f"Checking required columns present in train dataframe or not")
+            train_df_columns_status = self.is_required_columns_exist(base_df=base_df, current_df=train_df, report_key="missing_columns_within_train_dataset")
+
+            # Checking required columns in test dataframe
+            logging.info(f"Checking required columns present in test dataframe or not")
+            test_df_columns_status = self.is_required_columns_exist(base_df=base_df, current_df=test_df, report_key="missing_columns_within_test_dataset")
+
+            # Creating Data drift report for train data
+            if train_df_columns_status:
+                logging.info(f"Required columns present in train dataframe so detecting data drift for it")
+                self.data_drift(base_df=base_df, current_df=train_df, report_key="data_drift_within_train_dataset")
+
+            # Creating Data drift report for test data
+            if test_df_columns_status:
+                logging.info(f"Required columns present in test dataframe so detecting data drift for it")
+                self.data_drift(base_df=base_df, current_df=test_df, report_key="data_drift_within_test_dataset")
+
+            # Writing complete validation report 
+            logging.info(f"Creating validation report")
+            utils.write_yaml_file(file_path=self.data_validation_config.report_file_path, data=self.validation_error)
+
+            # Preparing artifact
+            logging.info(f"Preparing Data Validation artifacts")
+            data_validation_artifact = artifact_entity.DataValidationArtifact(report_file_path=self.data_validation_config.report_file_path)
+
+            return data_validation_artifact
+
+        except Exception as e:
+            raise SensorException(e, sys)
+
