@@ -16,8 +16,8 @@ def get_collection_as_dataframe(database_name:str, collection_name:str)->pd.Data
     Collects a MongoDB database collection and returns a dataframe of it
     ---------------------------------------------------------------------
     input: 
-    - database_name: Name of the database
-    - collection_name: Name of the collection of the database
+    - `database_name`: Name of the database
+    - `collection_name`: Name of the collection of the database
     ----------------------------------------------------------------------
     return: Pandas Dataframe of the collection of the database
     """
@@ -37,6 +37,30 @@ def get_collection_as_dataframe(database_name:str, collection_name:str)->pd.Data
         logging.info(f"DataFrame shape: {df.shape}")
 
         return df
+
+    except Exception as e:
+        raise SensorException(e, sys)
+
+
+def write_yaml_file(file_path:str, data:dict):
+    """
+    Writes any data to yaml format
+    ---------------------------------------------------------------------
+    input: 
+    - `file_path`: output file name
+    - `data`: dictionary to be wrote as yaml
+    ----------------------------------------------------------------------
+    return: `None`
+    """
+
+    try:
+        # Making directory to store YAML file
+        file_dir = os.path.dirname(file_path)
+        os.makedirs(file_dir, exist_ok=True)
+
+        # Write YAML file
+        with open(file_path, "w") as file:
+            yaml.dump(data, file)
 
     except Exception as e:
         raise SensorException(e, sys)
