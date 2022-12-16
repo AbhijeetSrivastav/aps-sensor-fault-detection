@@ -20,8 +20,8 @@ class DataValidation:
     Data Validation Component
     ---------------------------------------------------------
     input:
-     - data_validation_config: Data Validation Configuration
-     - data_ingestion_artifact: Data Ingestion Artifact
+     - `data_validation_config`: Data Validation Configuration
+     - `data_ingestion_artifact`: Data Ingestion Artifact
     ---------------------------------------------------------
     return: Data Validation Artifact
     """
@@ -44,8 +44,8 @@ class DataValidation:
         Drops the columns from DataFrame which have null value percent more than threshold
         ------------------------------------------------------------
         input:
-         - df: DataFrame from which to drop the columns
-         - report_key_: Name of the key with which to save report in `self.validation_error` attribute
+         - `df`: DataFrame from which to drop the columns
+         - `report_key_`: Name of the key with which to save report in self.validation_error attribute
          -----------------------------------------------------------
          return: `None` if no columns left else `pd.DataFrame`
         """
@@ -84,9 +84,9 @@ class DataValidation:
         Drops the columns from DataFrame which have null value percent more than threshold
         ------------------------------------------------------------
         input:
-         - base_df: DataFrame from which we are validating(base info)
-         - current_df: DataFrame which we are validating
-         - report_key_: Name of the key with which to save report in `self.validation_error` attribute
+         - `base_df`: DataFrame from which we are validating(base info)
+         - `current_df`: DataFrame which we are validating
+         - `report_key_`: Name of the key with which to save report in self.validation_error attribute
          -----------------------------------------------------------
          return: `True` if required columns exist else `False`
         """
@@ -113,8 +113,66 @@ class DataValidation:
         except Exception as e:
             raise SensorException(e, sys)
 
+    def data_drift(self, base_df: pd.DataFrame, current_df: pd.DataFrame, report_key: str):
+        """
+        Calculates Data Drift in base and current DataFrame
+        
+        - Null hypothesis is that both column data are drawn from same distribution.
+        ------------------------------------------------------------ 
+        input:
+         - `base_df`: DataFrame from which we are validating(base info)
+         - `current_df`: DataFrame which we are validating
+         - `report_key_`: Name of the key with which to save report in self.validation_error attribute
+         -----------------------------------------------------------
+         return: `None`
+        """
 
-    def data_drift(self):...
+        try:
+            # Initializing data drift dict to store drift stats
+            logging.info(f"Initializing data drift dictionary")
+            drift_report = dict()
+
+            # Initializing columns of base and current data frame
+            logging.info(f"Initializing columns of base and current data frame")
+            base_columns = base_df.columns
+            current_columns = current_df.columns
+
+            # Collecting for each column in base dataframe
+            for base_column in base_columns:
+                # ---NULL HYPOTHESIS---
+                # Creating base_data and current_data DataFrame only for all the columns which are common in base and current dataFrame
+                logging.info(f"Creating base and current data")
+                base_data, current_data = base_df[base_column], current_df[base_column]
+
+                logging.info(f"Hypothesis {base_column}: {base_data.dtype}, {current_data.dtype} ")
+
+                # Checking distribution 
+                logging.info(f"Calculating stats for distribution analysis")
+                same_distribution = ks_2samp(base_data, current_data)
+
+                # Updating drift report based on same_distribution
+                logging.info(f"Creating drift report for distribution")
+                if same_distribution.pvalue > 0.05:
+                    # ---Accepting NULL HYPOTHESIS---
+                    logging.info(f"Accepting Null Hypothesis")
+                    drift_report[base_column] = {
+                        "pvalues": float(same_distribution.pvalue),
+                        "same_distribution": True
+                    }
+                else:
+                    # ---Rejecting NULL HYPOTHESIS---
+                    logging.info(f"Rejecting Null Hypothesis")
+                    drift_report[base_column] = {
+                        "pvalues": float(same_distribution.pvalue),
+                        "same_distribution": False
+                    }
+
+            # Adding report about distribution
+            logging.info(f"Adding report about drift in validation error")
+            self.validation_error[report_key] = drift_report
+
+        except Exception as e:
+            raise SensorException(e, sys)
 
 
     def initiate_data_validation(self):...
