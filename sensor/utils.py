@@ -64,3 +64,25 @@ def write_yaml_file(file_path:str, data:dict):
 
     except Exception as e:
         raise SensorException(e, sys)
+
+
+def convert_columns_float(df:pd.DataFrame, exclude_columns:list)->pd.DataFrame:
+    """
+    Converts columns of given data frame into float
+    ---------------------------------------------------------------------
+    input: 
+    - `df`: source dataframe to process
+    - `exclude_columns`: columns to exclude from the source dataframe
+    ----------------------------------------------------------------------
+    return: `pd.DataFrame`
+    """
+
+    try:
+        for column in df.columns:
+            if column not in exclude_columns:
+                df[column] = df[column].astype("float")
+        
+        return df
+
+    except Exception as e:
+        raise SensorException(e, sys)
