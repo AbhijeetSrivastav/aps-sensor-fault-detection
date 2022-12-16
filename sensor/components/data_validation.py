@@ -93,6 +93,7 @@ class DataValidation:
 
         try:
             # Initializing columns of base and current data frame
+            logging.info(f"Initializing columns of base and current data frame")
             base_columns = base_df.columns
             current_columns = current_df.columns
 
@@ -100,14 +101,18 @@ class DataValidation:
             missing_columns = []
 
             # Checking for the columns which are in base data frame but not in current data frame
+            logging.info(f"Checking for the columns which are in base data frame but not in current data frame")
             for base_column in base_columns:
                 if base_column not in current_columns:
                     missing_columns.append(base_column)
             
             # Return True if missing columns, else Return False and add to report
             if len(missing_columns) > 0:
+                logging.info(f"No missing column found")
                 self.validation_error[report_key] = missing_columns
                 return False
+            
+            logging.info(f"Missing column found")
             return True
 
         except Exception as e:
