@@ -28,9 +28,10 @@ class DataValidation:
 
     def __init__(self, data_validation_config: config_entity.DataValidationConfig, data_ingestion_artifact: artifact_entity.DataIngestionArtifact):
         try:
-            logging.info("Collecting Data Ingestion Configuration")
-            
+            logging.info("Collecting Data Validation Configuration")
             self.data_validation_config = data_validation_config
+            
+            logging.info("Collecting Data Ingestion Artifact")
             self.data_ingestion_artifact = data_ingestion_artifact
 
             # Initializing dictionary for storing validation error
@@ -179,5 +180,4 @@ class DataValidation:
         except Exception as e:
             raise SensorException(e, sys)
 
-
-    def initiate_data_validation(self):...
+    def initiate_data_validation(self)->artifact_entity.DataValidationArtifact:
