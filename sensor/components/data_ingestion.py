@@ -18,7 +18,7 @@ class DataIngestion:
     Data Ingestion Component
     -----------------------------------------------------
     input:
-    - data_ingestion_config: Data Ingestion Configuration
+    - `data_ingestion_config`: Data Ingestion Configuration
     ------------------------------------------------------
     return: Data Ingestion Artifact
     """
