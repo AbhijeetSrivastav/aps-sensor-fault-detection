@@ -155,8 +155,32 @@ def save_numpy_array_data(file_path: str, array: np.array)->None:
 
         # Save array data
         logging.info(f"Saving the array data")
-        with open(file_path, "wb") as obj_file:
-            np.save(obj_file, array)
+        with open(file_path, "wb") as array_file:
+            np.save(array_file, array)
+
+    except Exception as e:
+        raise SensorException(e, sys)
+
+
+def load_numpy_array_data(file_path: str)->np.array:
+    """
+    Load specified numpy array
+    ---------------------------------------------------------------------
+    input: 
+    - `file_path`: path where numpy array is
+    ----------------------------------------------------------------------
+    return: `np.array`
+    """
+
+    try:
+        # Checking if file path exist or not
+        if not os.path.exists(file_path):
+            raise Exception(f"File path: {file_path} doesn't exist")
+        
+        # Load numpy array
+        logging.info(f"Loading object file")
+        with open(file_path, "rb") as array_file:
+            return np.load(array_file)
 
     except Exception as e:
         raise SensorException(e, sys)
