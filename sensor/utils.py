@@ -86,3 +86,27 @@ def convert_columns_float(df:pd.DataFrame, exclude_columns:list)->pd.DataFrame:
 
     except Exception as e:
         raise SensorException(e, sys)
+
+
+def save_object(file_path: str, obj: object)->None:
+    """
+    Save given object to specified location
+    ---------------------------------------------------------------------
+    input: 
+    - `file_path`: path where to save object
+    - `obj`: object to save
+    ----------------------------------------------------------------------
+    return: `None`
+    """
+
+    try:
+        # Making directory to store object file
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+
+        logging.info(f"Saving the object file")
+        # Save object file
+        with open(file_path, "wb") as obj_file:
+            dill.dump(obj, obj_file)
+
+    except Exception as e:
+        raise SensorException(e, sys)
