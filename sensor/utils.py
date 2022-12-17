@@ -5,6 +5,7 @@ import os
 import sys
 import yaml
 import dill
+import numpy as np
 import pandas as pd
 from sensor.config import mongo_client
 from sensor.logger import logging
@@ -131,6 +132,31 @@ def load_object(file_path: str)->object:
         logging.info(f"Loading object file")
         with open(file_path, "rb") as obj_file:
             return dill.load(obj_file)
+
+    except Exception as e:
+        raise SensorException(e, sys)
+
+
+def save_numpy_array_data(file_path: str, array: np.array)->None:
+    """
+    Save given numpy array to specified location
+    ---------------------------------------------------------------------
+    input: 
+    - `file_path`: path where to save array
+    - `array`: array to save
+    ----------------------------------------------------------------------
+    return: `None`
+    """
+
+    try:
+        # Making directory to store array data
+        dir_path = os.path.dirname(file_path)
+        os.makedirs(dir_path, exist_ok=True)
+
+        # Save array data
+        logging.info(f"Saving the array data")
+        with open(file_path, "wb") as obj_file:
+            np.save(obj_file, array)
 
     except Exception as e:
         raise SensorException(e, sys)
