@@ -12,6 +12,8 @@ from sensor.logger import logging
 FILE_NAME = "sensor.csv"
 TRAIN_FILE_NAME = "train.csv"
 TEST_FILE_NAME = "test.csv"
+TRANSFORMER_OBJECT_FILE_NAME = "transformer.pkl"
+TARGET_ENCODER_FILE_OBJECT_NAME = "target_encoder.pkl"
 
 
 class TrainingPipelineConfig:
@@ -88,7 +90,32 @@ class DataValidationConfig:
 
     
 
-class DataTransformationConfig:...
+class DataTransformationConfig:
+    """
+    Configuration for Data  Transformation Component
+    ---------------------------------------------------------------
+    input:
+    - `training_pipeline_config`: configuration of training pipeline
+    ---------------------------------------------------------------
+    return: `None`
+    """
+
+    def __init__(self, training_pipeline_config: TrainingPipelineConfig):
+        try:
+            self.data_transformation_dir = os.path.join(training_pipeline_config.artifact_dir, "transformation")
+
+            self.transformer_object_path = os.path.join(self.data_transformation_dir, "transformer", TRANSFORMER_OBJECT_FILE_NAME)
+
+            self.transformed_train_path = os.path.join(self.data_transformation_dir, "transformed", TRAIN_FILE_NAME)
+
+            self.transformed_test_path =  os.path.join(self.data_transformation_dir, "transformed", TEST_FILE_NAME)
+
+            self.target_encoder_path = os.path.join(self.data_transformation_dir, "target_encoder", TARGET_ENCODER_FILE_OBJECT_NAME)
+      
+        except Exception as e:
+            raise SensorException(e, sys)
+
+
 class ModelTrainingConfig:...
 class ModelEvaluationConfig:...
 class ModelPusherConfig:...
