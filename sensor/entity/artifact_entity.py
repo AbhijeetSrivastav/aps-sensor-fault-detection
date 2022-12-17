@@ -31,7 +31,20 @@ class DataValidationArtifact:
 
 
 @dataclass
-class DataTransformationArtifact:...
+class DataTransformationArtifact:
+    """
+    Artifact for Data Transformation component
+    ---------------------------------------
+    return:
+    - `transformer_object_path`: path of the transformer object
+    - `transformed_train_path`: path of the transformed train dataset array
+    - `transformed_test_path`: path of the transformed test dataset array
+    - `target_encoder_path`: path of the target encoder object
+    """
+    transformer_object_path: str
+    transformed_train_path: str
+    transformed_test_path: str
+    target_encoder_path: str
 
 
 @dataclass
