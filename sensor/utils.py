@@ -103,10 +103,34 @@ def save_object(file_path: str, obj: object)->None:
         # Making directory to store object file
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
 
-        logging.info(f"Saving the object file")
         # Save object file
+        logging.info(f"Saving the object file")
         with open(file_path, "wb") as obj_file:
             dill.dump(obj, obj_file)
+
+    except Exception as e:
+        raise SensorException(e, sys)
+
+
+def load_object(file_path: str)->object:
+    """
+    Load specified object
+    ---------------------------------------------------------------------
+    input: 
+    - `file_path`: path where object is
+    ----------------------------------------------------------------------
+    return: `None`
+    """
+
+    try:
+        # Checking if file path exist or not
+        if not os.path.exists(file_path):
+            raise Exception(f"File path: {file_path} doesn't exist")
+        
+        # Load object file
+        logging.info(f"Loading object file")
+        with open(file_path, "rb") as obj_file:
+            return dill.load(obj_file)
 
     except Exception as e:
         raise SensorException(e, sys)
