@@ -48,7 +48,18 @@ class DataTransformationArtifact:
 
 
 @dataclass
-class ModelTrainerArtifact:...
+class ModelTrainerArtifact:
+    """
+    Artifact for Model Training component
+    ---------------------------------------
+    return:
+    - `model_path`: path of the model object
+    - `f1_train_score`: f1 score of train set
+    - `f1_test_score`: f1 score of test set
+    """
+    model_path: str
+    f1_train_score: float
+    f1_test_score: float
 
 
 @dataclass
