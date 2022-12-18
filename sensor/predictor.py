@@ -36,9 +36,9 @@ class ModelResolver:
         except Exception as e:
             raise SensorException(e, sys)
 
-    def get_latest_dir(self)->Optional[str]:
+    def get_latest_dir_path(self)->Optional[str]:
         """
-        Returns latest model directory if their any
+        Returns latest model directory path if their any
         ---------------------------------------------------------
         input:
          - `None`
@@ -62,9 +62,11 @@ class ModelResolver:
             latest_dir_name = max(dir_names)
 
             # Get absolute path to our latest subdir
-            latest_dir_name = os.path.join(self.model_registry, f"{latest_dir_name}")
+            latest_dir_path = os.path.join(self.model_registry, f"{latest_dir_name}")
 
-            return latest_dir_name
+            return latest_dir_path
 
         except Exception as e:
             raise SensorException(e, sys) 
+
+    
