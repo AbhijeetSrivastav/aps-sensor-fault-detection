@@ -116,9 +116,9 @@ class DataTransformationConfig:
             raise SensorException(e, sys)
 
 
-class ModelTrainingConfig:
+class ModelTrainerConfig:
     """
-    Configuration for Model Training Component
+    Configuration for Model Trainer Component
     ---------------------------------------------------------------
     input:
     - `training_pipeline_config`: configuration of training pipeline
