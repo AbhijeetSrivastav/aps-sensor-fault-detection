@@ -76,11 +76,11 @@ class ModelTrainer:
 
             # Split train array in input and target feature array
             logging.info(f"Splitting train array in input and target feature array")
-            x_train, y_train = train_arr[:, :, -1], train_arr[:,-1]
+            x_train, y_train = train_arr[:,:-1], train_arr[:,-1]
 
             # Split test array in input and target feature array
             logging.info(f"Splitting test array in input and target feature array")
-            x_test, y_test = test_arr[:, :, -1], test_arr[:, -1]
+            x_test,y_test = test_arr[:,:-1], test_arr[:,-1]
 
             # Calling model trainer method
             logging.info(f"Calling model trainer method")
@@ -100,7 +100,7 @@ class ModelTrainer:
 
             # Calculate f1 score for test array
             logging.info(f"Calculating f1 score for test array")
-            f1_test_score = model.predict(y_true=y_test, y_pred=y_hat_test)
+            f1_test_score = f1_score(y_true=y_test, y_pred=y_hat_test)
 
             # Check for underfitting
             logging.info(f"Checking Model is Underfitting or not")
@@ -115,7 +115,7 @@ class ModelTrainer:
             logging.info(f"Checking Model is Overfitting  or not")
 
             logging.info(f"Calculating f1 test and train score difference")
-            diff = abs(f1_train_score, f1_test_score)
+            diff = abs(f1_train_score - f1_test_score)
 
             if diff > self.model_trainer_config.overfitting_threshold:
                 logging.info(f"Model is Overfitting! Expected Threshold:: {self.model_trainer_config.overfitting_threshold} Diff of train and test score:: {diff}")
