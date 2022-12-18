@@ -25,7 +25,7 @@ class ModelTrainer:
     return: Model Trainer Artifact
     """
     
-    def __init__(self, model_trainer_config: config_entity.ModelTrainingConfig, data_transformation_artifact: artifact_entity.DataTransformationArtifact):
+    def __init__(self, model_trainer_config: config_entity.ModelTrainerConfig, data_transformation_artifact: artifact_entity.DataTransformationArtifact):
         try:
             self.model_trainer_config = model_trainer_config
 
