@@ -55,7 +55,7 @@ def start_training_pipeline():
         logging.info(f"---------Initiating Model Evaluation---------")
         model_evaluation_config = config_entity.ModelEvaluationConfig(training_pipeline_config=training_pipeline_config)
 
-        model_evaluation = ModelEvaluation(model_evaluation_config=model_evaluation_config, data_ingestion_artifact=data_ingestion_artifact, data_transformation_artifact=data_transformation_artifact)
+        model_evaluation = ModelEvaluation(model_evaluation_config=model_evaluation_config, data_ingestion_artifact=data_ingestion_artifact, data_transformation_artifact=data_transformation_artifact, model_trainer_artifact=model_trainer_artifact)
 
         model_evaluation_artifact = model_evaluation.initiate_model_evaluation()
 
