@@ -2,7 +2,6 @@
 
 
 import sys
-import os
 import pandas as pd
 from sklearn.metrics import f1_score
 from sensor.entity import config_entity
@@ -58,6 +57,7 @@ class ModelEvaluation:
 
         try:
             "FOR LATEST MODEL FROM PREVIOUSLY SAVED"
+            logging.info(f"Fetching path of latest model, transformer, target encoder")
             # latest model directory path 
             latest_dir_path = self.model_resolver.get_latest_dir_path()
 
@@ -68,6 +68,7 @@ class ModelEvaluation:
 
                 return model_eval_artifact
             
+
             #---If their are previously saved model then we will compare---
             
             # Fetching path of latest model,transformer and target encoder
@@ -79,6 +80,7 @@ class ModelEvaluation:
 
             
             # Loading latest model, transformer and target encoder object
+            logging.info(f"Loading latest model, transformer, target encoder objects")
             latest_transformer = utils.load_object(file_path=latest_transformer_path)
 
             latest_model = utils.load_object(file_path=latest_model_path)
@@ -87,6 +89,7 @@ class ModelEvaluation:
 
          
             "FOR CURRENT MODEL THAT WE TRAINED IN THIS RUN OF PIPELINE AND SAVED"
+            logging.info(f"Fetching path of current model, transformer, target encoder")
             # Fetching path of current model,transformer and target encoder
             current_transformer_path = self.data_transformation_artifact.transformer_object_path
 
@@ -96,6 +99,7 @@ class ModelEvaluation:
 
 
             # Loading current model, transformer and target encoder object
+            logging.info(f"Loading current model, transformer, target encoder objects")
             current_transformer = utils.load_object(file_path=current_transformer_path)
 
             current_model = utils.load_object(file_path=current_model_path)
@@ -104,14 +108,17 @@ class ModelEvaluation:
 
 
             # Loading test dataframe
+            logging.info(f"Loading test dataframe")
             test_df = pd.read_csv(self.data_ingestion_artifact.test_file_path)
 
             # Splitting test dataframe in target and input feature
+            logging.info(f"Splitting test dataframe in target and input feature")
             target_df = test_df[TARGET_COLUMN]
 
             y_true = latest_target_encoder.transform(target_df)
 
             # Accuracy using latest model
+            logging.info(f"Calculating accuracy for latest model")
             input_feature_name = list(latest_transformer.feature_names_in_)
 
             input_arr = latest_transformer.transform(test_df[input_feature_name])
@@ -122,6 +129,7 @@ class ModelEvaluation:
 
 
             # Accuracy using the current model
+            logging.info(f"Calculating accuracy for current model")
             input_feature_name = list(current_transformer.feature_names_in_)
 
             input_arr = current_transformer.transform(test_df[input_feature_name])
@@ -132,13 +140,19 @@ class ModelEvaluation:
 
             current_model_score = f1_score(y_true=y_true, y_pred=y_pred)    
 
+            # Comparing models
+            logging.info(f"Comparing accuracy of latest and current model")
             if current_model_score <= latest_model_score:
                 raise Exception("Current trained model is not better than previous model")
             
 
+            logging.info(f"Latest model accuracy:: {latest_model_score}, Current model accuracy:: {current_model_score}")
+
+            # Calculating accuracy score diff
             diff = current_model_score - latest_model_score
 
             # Preparing artifact
+            logging.info(f"Preparing Model Evaluation artifacts")
             model_eval_artifact = artifact_entity.ModelEvaluationArtifact(is_model_accepted=True, improved_accuracy=diff)
         
             return model_eval_artifact
