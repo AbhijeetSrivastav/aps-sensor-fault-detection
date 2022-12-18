@@ -140,5 +140,21 @@ class ModelTrainerConfig:
             raise SensorException(e, sys)
 
 
-class ModelEvaluationConfig:...
+class ModelEvaluationConfig:
+    """
+    Configuration for Model Evaluation Component
+    ---------------------------------------------------------------
+    input:
+    - `training_pipeline_config`: configuration of training pipeline
+    ---------------------------------------------------------------
+    return: `None`
+    """
+
+    def __init__(self, training_pipeline_config: TrainingPipelineConfig):
+        try:
+            self.change_threshold = 0.01
+            
+        except Exception as e:
+            raise SensorException(e, sys)
+
 class ModelPusherConfig:...
