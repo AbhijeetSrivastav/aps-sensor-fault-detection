@@ -43,7 +43,7 @@ def start_batch_prediction(input_file_path):
 
         # Load latest transformer object
         logging.info(f"Loading latest transformer object")
-        transformer = load_object(file_path=model_resolver.get_latest_transformer_path())
+        transformer = load_object(file_path=model_resolver.get_current_transformer_path())
 
         # Extract input features from transformer object
         logging.info(f"Extracting input feature from transformer object")
@@ -55,7 +55,7 @@ def start_batch_prediction(input_file_path):
 
         # Load latest model object
         logging.info(f"Loading latest model object")
-        model = load_object(file_path=model_resolver.get_latest_model_path())
+        model = load_object(file_path=model_resolver.get_current_model_path())
 
         # Predict using model
         logging.info(f"Predicting output label using model")
@@ -63,7 +63,7 @@ def start_batch_prediction(input_file_path):
 
         # Load latest target encoder object
         logging.info(f"Loading latest target encoder object")
-        target_encoder = load_object(file_path=model_resolver.get_latest_target_encoder_path())
+        target_encoder = load_object(file_path=model_resolver.get_current_target_encoder_path())
 
         # Inverse transform target feature
         logging.info(f"Inverse transforming encoded target features") 

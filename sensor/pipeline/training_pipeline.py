@@ -64,7 +64,7 @@ def start_training_pipeline():
         logging.info(f"---------Initiating Model Pusher---------")
         model_pusher_config = config_entity.ModelPusherConfig(training_pipeline_config=training_pipeline_config)
 
-        model_pusher = ModelPusher(model_pusher_config==model_pusher_config, data_transformation_artifact=data_transformation_artifact, model_trainer_artifact=model_trainer_artifact)
+        model_pusher = ModelPusher(model_pusher_config=model_pusher_config, data_transformation_artifact=data_transformation_artifact, model_trainer_artifact=model_trainer_artifact)
 
         model_pusher_artifact = model_pusher.initiate_model_pusher()
 
