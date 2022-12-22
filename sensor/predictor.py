@@ -84,7 +84,7 @@ class ModelResolver:
 
             # If no model in the path
             if latest_dir_path is None:
-                logging.log(f"Model is not available!")
+                logging.info(f"Model is not available!")
                 raise Exception(f"Model is not available!")
 
             latest_model_path = os.path.join(latest_dir_path, self.model_dir_name, MODEL_FILE_NAME)
@@ -108,7 +108,7 @@ class ModelResolver:
 
             # If no transformer in the path
             if latest_dir_path is None:
-                logging.log(f"Transformer is not available!")
+                logging.info(f"Transformer is not available!")
                 raise Exception(f"Transformer is not available!")
 
             latest_transformer_path = os.path.join(latest_dir_path, self.transformer_dir_name, TRANSFORMER_OBJECT_FILE_NAME)
@@ -132,7 +132,7 @@ class ModelResolver:
 
             # If no target encoder in the path
             if latest_dir_path is None:
-                logging.log(f"Target encoder is not available!")
+                logging.info(f"Target encoder is not available!")
                 raise Exception(f"Target encoder is not available!")
 
             latest_target_encoder_path = os.path.join(latest_dir_path, self.target_encoder_dir_name, TRANSFORMER_OBJECT_FILE_NAME)
@@ -189,7 +189,7 @@ class ModelResolver:
 
             # If no model in the path
             if current_dir_path is None:
-                logging.log(f"Model is not available!")
+                logging.info(f"Model is not available!")
                 raise Exception(f"Model is not available!")
 
             current_model_path = os.path.join(current_dir_path, self.model_dir_name, MODEL_FILE_NAME)
@@ -213,7 +213,7 @@ class ModelResolver:
 
             # If no transformer in the path
             if current_dir_path is None:
-                logging.log(f"Transformer is not available!")
+                logging.info(f"Transformer is not available!")
                 raise Exception(f"Transformer is not available!")
 
             current_transformer_path = os.path.join(current_dir_path, self.transformer_dir_name, TRANSFORMER_OBJECT_FILE_NAME)
@@ -237,7 +237,7 @@ class ModelResolver:
 
             # If no target encoder in the path
             if current_dir_path is None:
-                logging.log(f"Target encoder is not available!")
+                logging.info(f"Target encoder is not available!")
                 raise Exception(f"Target encoder is not available!")
 
             current_target_encoder_path = os.path.join(current_dir_path, self.target_encoder_dir_name, TRANSFORMER_OBJECT_FILE_NAME)
