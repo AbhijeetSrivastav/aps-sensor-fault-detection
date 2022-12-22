@@ -157,4 +157,28 @@ class ModelEvaluationConfig:
         except Exception as e:
             raise SensorException(e, sys)
 
-class ModelPusherConfig:...
+class ModelPusherConfig:
+    """
+    Configuration for Model Pusher Component
+    ---------------------------------------------------------------
+    input:
+    - `training_pipeline_config`: configuration of training pipeline
+    ---------------------------------------------------------------
+    return: `None`
+    """
+
+    def __init__(self, training_pipeline_config: TrainingPipelineConfig):
+        try:
+            self.model_pusher_dir = os.path.join(training_pipeline_config.artifact_dir , "model_pusher")
+
+            self.saved_model_dir = os.path.join("saved_models")
+
+            self.pusher_model_dir = os.path.join(self.model_pusher_dir,"saved_models")
+
+            self.pusher_model_path = os.path.join(self.pusher_model_dir,MODEL_FILE_NAME)
+
+            self.pusher_transformer_path = os.path.join(self.pusher_model_dir,TRANSFORMER_OBJECT_FILE_NAME)
+
+            self.pusher_target_encoder_path = os.path.join(self.pusher_model_dir,TARGET_ENCODER_FILE_OBJECT_NAME)
+        except Exception as e:
+            raise SensorException(e, sys)
