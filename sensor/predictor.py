@@ -135,7 +135,7 @@ class ModelResolver:
                 logging.info(f"Target encoder is not available!")
                 raise Exception(f"Target encoder is not available!")
 
-            latest_target_encoder_path = os.path.join(latest_dir_path, self.target_encoder_dir_name, TRANSFORMER_OBJECT_FILE_NAME)
+            latest_target_encoder_path = os.path.join(latest_dir_path, self.target_encoder_dir_name, TARGET_ENCODER_FILE_OBJECT_NAME)
 
             return latest_target_encoder_path
 
@@ -144,105 +144,87 @@ class ModelResolver:
 
     ##################################################
 
-    def get_current_dir_path(self)->Optional[str]:
+    def get_latest_save_dir_path(self)->Optional[str]:
         """
-        Returns current model directory path if their any
+        Returns latest saved model directory path if their any
         ---------------------------------------------------------
         input:
          - `None`
         ---------------------------------------------------------
-        return: `None` or `current_dir_path`
+        return: `None` or `latest_save_dir_path`
         """
         try:
-            # Creating list of all the sub directories in the model_registry folder of model training artifact
-            dir_names = os.listdir(self.model_registry)
+            latest_dir_path = self.get_latest_dir_path()
 
-            # If no sub directory that means no saved model object
-            if len(dir_names) == 0:
-                return None
+            # If no latest directory
+            if latest_dir_path is None:
+                logging.info(f"No latest saved model registry found!")
+                return os.path.join(self.model_registry,f"{0}")
             
-            # Convert str name of subdir to int for all subdirs
-            dir_names = list(map(int, dir_names))
+            # Number name of the latest saved model sub directory
+            latest_dir_num = int(os.path.basename(self.get_latest_dir_path()))
 
-            # Get the latest one as we saved our subdirs as named by date time format
-            current_dir_name = max(dir_names)
 
-            # Get absolute path to our latest subdir
-            current_dir_path = os.path.join(self.model_registry, f"{current_dir_name + 1}")
+            latest_save_dir_path = os.path.join(self.model_registry, f"{latest_dir_num+1}")
 
-            return current_dir_path
+            return latest_save_dir_path
 
         except Exception as e:
             raise SensorException(e, sys) 
     
-    def get_current_model_path(self):
+    def get_latest_save_model_path(self):
         """
-        Returns current model path from the current model subdir from model_registry
+        Returns latest saved model path from the latest saved model subdir from model_registry
         ---------------------------------------------------------
         input:
          - `None`
         ---------------------------------------------------------
-         return: `current_model_path`
+         return: `latest_save_model_path`
         """
         try:
-            current_dir_path = self.get_current_dir_path()
+            latest_save_dir_path = self.get_latest_save_dir_path()
 
-            # If no model in the path
-            if current_dir_path is None:
-                logging.info(f"Model is not available!")
-                raise Exception(f"Model is not available!")
+            latest_save_model_path = os.path.join(latest_save_dir_path, self.model_dir_name,MODEL_FILE_NAME)
 
-            current_model_path = os.path.join(current_dir_path, self.model_dir_name, MODEL_FILE_NAME)
-
-            return current_model_path
+            return latest_save_model_path
 
         except Exception as e:
             raise SensorException(e, sys)
 
-    def get_current_transformer_path(self):
+    def get_latest_save_transformer_path(self):
         """
-        Returns current transformer path from the current transformer subdir from model_registry
+        Returns latest saved transformer path from the latest saved transformer subdir from model_registry
         ---------------------------------------------------------
         input:
          - `None`
         ---------------------------------------------------------
-         return: `current_transformer_path`
+         return: `latest_save_transformer_path`
         """
         try:
-            current_dir_path = self.get_current_dir_path()
+            latest_save_dir_path = self.get_latest_save_dir_path()
 
-            # If no transformer in the path
-            if current_dir_path is None:
-                logging.info(f"Transformer is not available!")
-                raise Exception(f"Transformer is not available!")
+            latest_save_transformer_path = os.path.join(latest_save_dir_path, self.transformer_dir_name,TRANSFORMER_OBJECT_FILE_NAME)
 
-            current_transformer_path = os.path.join(current_dir_path, self.transformer_dir_name, TRANSFORMER_OBJECT_FILE_NAME)
-
-            return current_transformer_path
+            return latest_save_transformer_path
 
         except Exception as e:
             raise SensorException(e, sys)
     
-    def get_current_target_encoder_path(self):
+    def get_latest_save_target_encoder_path(self):
         """
-        Returns current target encoder path from the current target encoder subdir from model_registry
+        Returns latest saved target encoder path from the latest saved target encoder subdir from model_registry
         ---------------------------------------------------------
         input:
          - `None`
         ---------------------------------------------------------
-         return: `current_target_encoder_path`
+         return: `latest_save_target_encoder_path`
         """
         try:
-            current_dir_path = self.get_current_dir_path()
+            latest_save_dir_path = self.get_latest_save_dir_path()
 
-            # If no target encoder in the path
-            if current_dir_path is None:
-                logging.info(f"Target encoder is not available!")
-                raise Exception(f"Target encoder is not available!")
+            latest_save_target_encoder_path = os.path.join(latest_save_dir_path, self.target_encoder_dir_name,TARGET_ENCODER_FILE_OBJECT_NAME)
 
-            current_target_encoder_path = os.path.join(current_dir_path, self.target_encoder_dir_name, TRANSFORMER_OBJECT_FILE_NAME)
-
-            return current_target_encoder_path
+            return latest_save_target_encoder_path
 
         except Exception as e:
             raise SensorException(e, sys)
