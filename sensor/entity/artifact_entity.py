@@ -76,4 +76,13 @@ class ModelEvaluationArtifact:
 
 
 @dataclass
-class ModelPusherArtifact:...
+class ModelPusherArtifact:
+    """
+    Artifact for Model Pusher component
+    ---------------------------------------
+    return:
+    - `pusher_model_dir`: where all latest model and supporting objects are (in artifact)
+    - `saved_model_dir`: where models and supporting objects will be pushed
+    """
+    pusher_model_dir:str 
+    saved_model_dir:str
