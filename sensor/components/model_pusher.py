@@ -47,7 +47,7 @@ class ModelPusher:
         try:
             # Load transformer object
             logging.info(f"Loading transformer object")
-            transformer = load_object(file_path=self.data_transformation_artifact.transform_object_path)
+            transformer = load_object(file_path=self.data_transformation_artifact.transformer_object_path)
 
             # Load Model object
             logging.info(f"Loading model object")
@@ -68,11 +68,11 @@ class ModelPusher:
 
             # Fetch path of latest model, transformer and encoder path
             logging.info(f"Fetching path of latest model, transformer, target encoder")
-            transformer_path=self.model_resolver.get_latest_save_transformer_path()
+            transformer_path = self.model_resolver.get_latest_transformer_path()
 
-            model_path=self.model_resolver.get_latest_save_model_path()
+            model_path = self.model_resolver.get_latest_model_path()
 
-            target_encoder_path=self.model_resolver.get_latest_save_target_encoder_path()
+            target_encoder_path = self.model_resolver.get_latest_target_encoder_path()
 
             # Save Model, transformer and encoder to the saved model directory
             logging.info(f"Saving model, transformer, target encoder object to saved model directory")
