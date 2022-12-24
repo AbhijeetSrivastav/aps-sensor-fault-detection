@@ -14,7 +14,7 @@ class ModelResolver:
     """
     Model Resolver 
     --------------------------------------------------------------------------------------------------------------------------------
-   CURRENT named methods are for the directory or objects which have been created when pipeline is started to produce new model.
+   LATEST SAVED named methods are for the directory or objects which have been created when pipeline is started to produce new model.
    LATEST named methods are for the directory or object which have been created when pipeline was previously ran to produce model. 
    ---------------------------------------------------------------------------------------------------------------------------------
     input:
