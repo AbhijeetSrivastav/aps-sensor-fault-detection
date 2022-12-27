@@ -11,3 +11,11 @@ static_folder="static")
 @cross_origin()
 def homePage():
     return render_template("home.html")
+
+@app.route('/batch_prediction', methods=['POST', 'GET'])
+def run_batch_prediction():
+    return render_template("output.html")
+
+@app.route('/custom_batch_prediction', methods=['POST', 'GET'])
+def run_custom_batch_prediction():
+    return render_template("output.html")
