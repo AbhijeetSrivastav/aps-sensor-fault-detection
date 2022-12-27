@@ -22,8 +22,13 @@
         
         
         <div class="btn-container-home">
-            <input class="btn-grad" type="submit" name="submit_button" value="Batch Prediction"> 
-            <input class="btn-grad" type="submit" name="submit_button" value="Custom Batch Prediction">            
+           <form action="/batch_prediction" method="POST">
+            <input class="btn-grad" type="submit" name="Batch Prediction" value="Batch Prediction"> 
+           </form>            
+
+           <form action="/custom_batch_prediction" method="POST">
+            <input class="btn-grad" type="submit" name="Custom Batch Prediction" value="Custom Batch Prediction">
+           </form>
         </div>
 
         <div class="footer-container">
