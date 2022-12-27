@@ -23,4 +23,6 @@ scikit-learn== 1.2.0
 catboost
 seaborn
 ipykernel
+Flask
+Flask-Cors
 -e .
