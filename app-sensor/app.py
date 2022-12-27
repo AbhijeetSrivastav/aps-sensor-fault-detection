@@ -1,6 +1,8 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_cors import cross_origin
 
+from sensor.pipeline.batch_prediction import start_batch_prediction
+from sensor.predictor import ModelResolver
 
 app = Flask(__name__,
 template_folder="templates",
@@ -14,8 +16,9 @@ def homePage():
 
 @app.route('/batch_prediction', methods=['POST', 'GET'])
 def run_batch_prediction():
-    return render_template("output.html")
-
-@app.route('/custom_batch_prediction', methods=['POST', 'GET'])
-def run_custom_batch_prediction():
-    return render_template("output.html")
+    if request.method == "POST":
+        try:
+            start_batch_prediction(input_file_path='aps_failure_training_set1.csv', api=True)
+            return render_template("output.html")
+        except Exception as e:
+            raise e
