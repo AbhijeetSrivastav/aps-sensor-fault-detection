@@ -5,33 +5,37 @@
 <title>Search Page</title>
 
 
-<!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
-
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-        crossorigin="anonymous"></script>
-
-
 {% endblock %}
 
 {% block body %}
-<div class="content">
-    <h1 style="text-align: center" class="">Air Pressure Sensor Fault Detection</h1>
+<div class="main-panel">
+    
+    <div class="left-panel image-container-wall">
+        <img class="image-wall" src="{{url_for('static', filename='wall.png')}}">
+    </div>
+    
+    
+    <div class="right-panel">
+        <div class="header-container header-container-home">
+            <h1 class="header-home">Air Pressure Sensor Fault Detection</h1>
+        </div>
+        
+        
+        <div class="btn-container-home">
+            <input class="btn-grad" type="submit" name="submit_button" value="Batch Prediction"> 
+            <input class="btn-grad" type="submit" name="submit_button" value="Custom Batch Prediction">            
+        </div>
 
-    <div class="form">
-        <form action="/viddata" method="POST" class="form-inline">
-            <input class="py-1" type="text" name="content" id="content">
-            <input class="btn btn-secondary" type="submit" value="Scrap">
-        </form>
+        <div class="footer-container">
+            <a href="https://www.instagram.com/abhijeet.ai_/" class="fa fa-instagram"></a>
+
+            <a href="https://github.com/AbhijeetSrivastav/aps-sensor-fault-detection" class="fa fa-github"></a>
+            
+            <a href="https://www.linkedin.com/in/abhijeet-srivastav-02245a18b/" class="fa fa-linkedin"></a>
+
+            <h4 class="foot-note">Abhijeet Srivastav</h4>
+        </div>
     </div>
 </div>
-<div class="content">
-    
-</div>
+
 {% endblock %}
