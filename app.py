@@ -22,11 +22,9 @@ def run_batch_prediction():
         try:
             run_batch_prediction.prediction_file_path = start_batch_prediction(input_file_path='aps_failure_training_set1.csv')
 
-            # prediction_df = pd.read_csv(prediction_file_path,chunksize=100)
-
             # prediction_df = pd.concat((chunk for chunk in pd.read_csv(prediction_file_path,chunksize=100)))
 
-            prediction_df = pd.read_csv(run_batch_prediction.prediction_file_path).head(100)
+            prediction_df = pd.read_csv(run_batch_prediction.prediction_file_path).head(1000)
 
             return render_template("output.html", tables=[prediction_df.to_html(classes="dataframe", header=True)], titles=prediction_df.columns.values)
 
