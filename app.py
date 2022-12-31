@@ -6,7 +6,7 @@ import os
 import pandas as pd
 
 from sensor.pipeline.batch_prediction import start_batch_prediction
-from sensor.predictor import ModelResolver
+from sensor.pipeline.training_pipeline import start_training_pipeline
 
 app = Flask(__name__,
 template_folder="templates",
@@ -101,3 +101,10 @@ def download_custom_batch_prediction():
         download_name='prediction.csv',
         as_attachment=True
     )
+
+@app.route('/retrain', methods=['POST', 'GET'])
+def retrain():
+    try:
+        start_training_pipeline()
+    except Exception as e:
+        raise e
