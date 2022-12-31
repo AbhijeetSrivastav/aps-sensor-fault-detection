@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<title>Upload File</title>
+
+
+{% endblock %}
+
+{% block body %}
+
+<div>
+    <form action = "/uploader" method = "POST" 
+         enctype = "multipart/form-data">
+         <input type = "file" name = "file">
+         <input type = "submit" name="Upload">
+      </form>  
+</div> 
+
+<div class="btn-container-home">
+    <form action="/custom_batch_prediction" method="POST" enctype="multipart/form-data">
+        <input class="btn-grad" type="submit" name="Predict" value="Predict"> 
+    </form>            
+</div>
+
+{% endblock %}
