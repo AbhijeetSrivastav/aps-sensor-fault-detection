@@ -9,11 +9,14 @@
 
 {% block body %}
 
-<div class="btn-container-home">
-    <form action="/download_batch_prediction" method="GET">
-     <input class="btn-grad" type="submit" name="Download Prediction" value="Download Prediction"> 
-    </form>            
- </div>
+<div class="header-output-container">
+    <div class="btn-container-output">
+        <form action="/download_batch_prediction" method="GET">
+         <input class="btn-grad download-btn" type="submit" name="Download Predictions" value="Download Predictions"> 
+        </form>            
+     </div> 
+</div>
+
 
 {% for table in tables %}
             {{ table|safe }}
