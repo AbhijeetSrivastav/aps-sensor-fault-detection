@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<title>Predictions</title>
+
+
+{% endblock %}
+
+{% block body %}
+
+<div class="btn-container-home">
+    <form action="/download_batch_prediction" method="GET">
+     <input class="btn-grad" type="submit" name="Download Prediction" value="Download Prediction"> 
+    </form>            
+ </div>
+
+{% for table in tables %}
+            {{ table|safe }}
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<title>Search Page</title>
+
+
+{% endblock %}
+
+{% block body %}
+<div class="main-panel">
+    
+    <div class="left-panel image-container-wall">
+        <img class="image-wall" src="{{url_for('static', filename='wall.png')}}">
+    </div>
+    
+    
+    <div class="right-panel">
+        <div class="header-container header-container-home">
+            <h1 class="header-home">Air Pressure Sensor Fault Detection</h1>
+        </div>
+        
+        
+        <div class="btn-container-home">
+           <form action="/batch_prediction" method="POST">
+            <input class="btn-grad" type="submit" name="Batch Prediction" value="Batch Prediction"> 
+           </form>            
+        </div>
+
+        <div class="footer-container">
+            <a href="https://www.instagram.com/abhijeet.ai_/" class="fa fa-instagram"></a>
+
+            <a href="https://github.com/AbhijeetSrivastav/aps-sensor-fault-detection" class="fa fa-github"></a>
+            
+            <a href="https://www.linkedin.com/in/abhijeet-srivastav-02245a18b/" class="fa fa-linkedin"></a>
+
+            <h4 class="foot-note">Abhijeet Srivastav</h4>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
