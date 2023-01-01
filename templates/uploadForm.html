@@ -9,18 +9,14 @@
 
 {% block body %}
 
-<div>
-    <form action = "/uploader" method = "POST" 
+<div class="upload-form">
+    <div class="form-component">
+        <form action = "/uploader" method = "POST" 
          enctype = "multipart/form-data">
-         <input type = "file" name = "file">
-         <input type = "submit" name="Upload">
-      </form>  
+                <input type = "file" name = "file">
+                <input class="upload-btn" type = "submit" name="Upload">
+        </form>  
+    </div>
 </div> 
-
-<div class="btn-container-home">
-    <form action="/custom_batch_prediction" method="POST" enctype="multipart/form-data">
-        <input class="btn-grad" type="submit" name="Predict" value="Predict"> 
-    </form>            
-</div>
 
 {% endblock %}
