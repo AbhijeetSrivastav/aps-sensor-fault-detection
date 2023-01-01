@@ -99,7 +99,7 @@ body {
   order: 0;
 }
 
-/*=======================Training Report Page Page================================*/
+/*=======================Training Report Page================================*/
 .report-main{
   display: flex;
   flex-wrap: wrap;
@@ -114,13 +114,26 @@ body {
 
 
 
-/*=======================Upload Form Page Page================================*/
+/*=======================Upload Form Page================================*/
 .upload-form{
   display: flex;
   background-image: url("/static/lambo-wheels.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  overflow: auto;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+/*=======================Warning Report Page================================*/
+.warning-main{
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
@@ -243,7 +256,7 @@ body {
 }
 
 
-/*=======================Training Report Page Page================================*/
+/*=======================Training Report Page================================*/
 .report-msg{
   display: block;
   background-image: linear-gradient(to right, #FC354C 0%, #0ABFBC  51%, #FC354C  100%);
@@ -268,7 +281,7 @@ body {
 }
 
 
-/*=======================Upload Form Page Page================================*/
+/*=======================Upload Form Page================================*/
 input[type="file"] {
   display: block;
   background-image: linear-gradient(to right, #000000 0%, #434343  51%, #000000  100%);
@@ -297,6 +310,31 @@ input[type="file"] {
 }
 
 .upload-btn:hover {
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
+}
+
+
+/*=======================Warning Page================================*/
+.warning-msg{
+  display: block;
+  background-image: linear-gradient(to right, #FC354C 0%, #0ABFBC  51%, #FC354C  100%);
+  color: white;            
+  box-shadow: 0 0 20px #eee;
+  transition: 0.5s;
+  background-size: 200% auto;
+  border-radius: 10px;
+  padding: 2em;
+  margin: 2em;
+  font-size: larger;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+
+}
+
+.warning-msg:hover {
   background-position: right center;
   color: #fff;
   text-decoration: none;
