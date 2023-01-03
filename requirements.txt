@@ -25,4 +25,5 @@ seaborn
 ipykernel
 Flask
 Flask-Cors
+apache-airflow
 -e .
