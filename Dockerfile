@@ -4,4 +4,5 @@ RUN mkdir /sensor-app
 COPY . /sensor-app/
 WORKDIR /sensor-app/
 RUN pip3 install -r requirements.txt
-CMD gunicorn --workers=4 wsgi:app
+EXPOSE $PORT
+CMD gunicorn --workers=4 --bind 0.0.0.0:$POR --workers=4 wsgi:app
