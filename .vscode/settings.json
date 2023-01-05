@@ -1,0 +1,14 @@
+{
+    "cSpell.words": [
+        "catboost",
+        "catplot",
+        "scania",
+        "trainingreport",
+        "undersampling",
+        "werkzeug",
+        "xgboost"
+    ],
+    "python.analysis.typeCheckingMode": "off",
+    "python.linting.enabled": true,
+    "workbench.editor.enablePreview": false
+}

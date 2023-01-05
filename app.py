@@ -188,3 +188,9 @@ def retrain():
         message = "Current trained model is not better than previous model"
     
     return render_template("trainingreport.html", message=message)
+
+
+
+
+if __name__ == '__main__':
+    app.run()
