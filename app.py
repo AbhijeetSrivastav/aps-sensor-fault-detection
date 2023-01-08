@@ -15,6 +15,7 @@ from sensor.pipeline.training_pipeline import start_training_pipeline
 app = Flask(__name__,template_folder="templates",static_folder="static")
 UPLOAD_FOLDER = 'static\\files\\'
 app.config['UPLOAD_FOLDER'] =  UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000
 app.secret_key ="xy"
 
 
