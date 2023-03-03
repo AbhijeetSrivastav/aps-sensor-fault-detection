@@ -3,7 +3,7 @@
 <h1 align="center"> Air Pressure Sensor Fault Detection</h1>
 
 <p align="center"> 
-  <img src="assets/lambo_bn.webp" alt="Air Pressure Sensor Fault Detection" height="800" width="1500">
+  <img src="assets/lambo_bn.webp" alt="Air Pressure Sensor Fault Detection">
 </p>
 
 
