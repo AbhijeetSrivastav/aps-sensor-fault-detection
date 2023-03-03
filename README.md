@@ -3,7 +3,7 @@
 <h1 align="center"> Air Pressure Sensor Fault Detection</h1>
 
 <p align="center"> 
-  <img src="Assets/ml.jpg" alt="Air Pressure Sensor Fault Detection" height="350" width="1600">
+  <img src="assets/lambo_bn.webp" alt="Air Pressure Sensor Fault Detection" height="800" width="1423">
 </p>
 
 
@@ -28,7 +28,7 @@
 </details>
 
 
-![-----------------------------------------------------](Assets/rainbow.png)
+![-----------------------------------------------------](assets/rgb.png)
 
 
 <!-- ABOUT THE PROJECT -->
@@ -40,7 +40,7 @@
 </p>
 
 
-![-----------------------------------------------------](Assets/rainbow.png)
+![-----------------------------------------------------](assets/rgb.png)
 
 
 <!-- OVERVIEW -->
@@ -54,7 +54,7 @@ The problem is to reduce the cost due to unnecessary repairs. So it is required 
 </p>
 
 
-![-----------------------------------------------------](Assets/rainbow.png)
+![-----------------------------------------------------](assets/rgb.png)
 
 
 <!-- BUILD WITH -->
@@ -92,7 +92,7 @@ The problem is to reduce the cost due to unnecessary repairs. So it is required 
    </table>
 </center>      
 
-![-----------------------------------------------------](Assets/rainbow.png)
+![-----------------------------------------------------](assets/rgb.png)
 
 
 <!-- PROJECT FILES DESCRIPTION -->
@@ -105,7 +105,7 @@ The problem is to reduce the cost due to unnecessary repairs. So it is required 
 </ul>
 
 
-![-----------------------------------------------------](Assets/rainbow.png)
+![-----------------------------------------------------](assets/rgb.png)
 
 
 <!-- GETTING STARTED -->
@@ -123,7 +123,7 @@ To get a local copy up and running follow these simple example steps.
 <pre><code>$ jupyter notebook "model_name.ipynb"</code></pre>
 
 
-![-----------------------------------------------------](Assets/rainbow.png)
+![-----------------------------------------------------](assets/rgb.png)
 
 
 <!-- Showcase -->
@@ -151,7 +151,7 @@ To get a local copy up and running follow these simple example steps.
 </center>
 
 
-![-----------------------------------------------------](Assets/rainbow.png)
+![-----------------------------------------------------](assets/rgb.png)
 
 
 <!-- Requirements -->
@@ -162,7 +162,7 @@ To get a local copy up and running follow these simple example steps.
 <pre><code>$  pip install -r requirements.txt</code></pre>
 
 
-![-----------------------------------------------------](Assets/rainbow.png)
+![-----------------------------------------------------](assets/rgb.png)
 
 
 <!-- Usage -->
@@ -173,7 +173,7 @@ This Machine Learning Guide project is made as collection of several Jupyter Noe
 Models are present in different models with a dataset to test the model and learn from the outputs. Notebooks contain theory related to model, code implementataion and expaination of implementation.
 
 
-![-----------------------------------------------------](Assets/rainbow.png)
+![-----------------------------------------------------](assets/rgb.png)
 
 
 <!-- Contribution -->
@@ -190,7 +190,7 @@ Contributions are what make the open source community such an amazing place to b
 5. Open a Pull Request
 
 
-![-----------------------------------------------------](Assets/rainbow.png)
+![-----------------------------------------------------](assets/rgb.png)
 
 
 <!-- Support -->
@@ -208,7 +208,7 @@ However, if you are using this project and are happy with it or just want to enc
 Thanks! :heart:
 
 
-![-----------------------------------------------------](Assets/rainbow.png)
+![-----------------------------------------------------](assets/rgb.png)
 
 
 <!-- License -->
@@ -236,7 +236,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SO
 ```
 [MIT License](https://github.com/AbhijeetSrivastav/aps-sensor-fault-detection/blob/main/LICENSE)
 
-![-----------------------------------------------------](Assets/rainbow.png)
+![-----------------------------------------------------](assets/rgb.png)
 
 
 <!-- Credits -->
@@ -252,4 +252,4 @@ Abhijeet Srivastav
 
 
 
-![-----------------------------------------------------](Assets/rainbow.png)
+![-----------------------------------------------------](assets/rgb.png)
